@@ -1,4 +1,11 @@
 {
+  "name": "matlocation",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "init-db": "node init-db.js"
+  },
   "dependencies": {
     "better-sqlite3": "^13.1.1",
     "express": "^5.3.0"

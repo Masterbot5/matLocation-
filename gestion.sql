@@ -1,20 +1,27 @@
-
-
-CREATE TABLE liste1  (
-	id	INTEGER,
-	"nom"	TEXT NOT NULL,
-	"quantité"	INTEGER,
-	"catégorie"	TEXT NOT NULL,
-	PRIMARY KEY("id" AUTOINCREMENT)
+CREATE TABLE IF NOT EXISTS disponible (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom TEXT NOT NULL,
+    quantite INTEGER NOT NULL,
+    categorie TEXT NOT NULL
 );
-/ données de la liste  des equipements 
 
-INSERT INTO liste1 (id, nom, quantité, catégorie) VALUES
- (1, 'table de mixage', 5, 'sonorisation'),
- (2, 'baffle', 10, 'sonorisation'),
- (3, 'bache', 10, 'tente de reception'),
- (4, 'tente climatisée', 6, 'tente de reception'),
- (5, 'chaises bleue', 200, 'chaises'),
- (6, 'chaises en plastique', 400, 'chaises'),
- (7, 'Podium', 3, 'sonorisation');
+CREATE TABLE IF NOT EXISTS location (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    client TEXT NOT NULL,
+    email TEXT NOT NULL,
+    article_id INTEGER NOT NULL,
+    quantite INTEGER NOT NULL,
+    date_reservation TEXT NOT NULL,
+    commentaire TEXT,
+    FOREIGN KEY(article_id) REFERENCES disponible(id)
+);
+
+INSERT OR IGNORE INTO disponible (id, nom, quantite, categorie) VALUES
+    (1, 'Table de mixage', 5, 'Sonorisation'),
+    (2, 'Baffle', 12, 'Sonorisation'),
+    (3, 'Bâche', 10, 'Tente de réception'),
+    (4, 'Tente climatisée', 6, 'Tente de réception'),
+    (5, 'Chaises bleues', 200, 'Chaises'),
+    (6, 'Chaises en plastique', 400, 'Chaises'),
+    (7, 'Podium', 3, 'Sonorisation');
 
